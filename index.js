@@ -4,7 +4,7 @@ const axios = require('axios');
 const express = require('express');
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = 8000;
 
 const ROBLOX_COOKIE = process.env.ROBLOX_COOKIE;
 const DISCORD_WEBHOOK = process.env.DISCORD_WEBHOOK;
