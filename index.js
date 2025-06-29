@@ -74,19 +74,19 @@ async function startBot() {
   }
 
   setInterval(async () => {
-    try {
-      const transactions = await noblox.getGroupTransactions(GROUP_ID, "Sale", "Asc");
-      const newSales = transactions.filter(tx => new Date(tx.created).getTime() > lastCheck);
-      if (newSales.length > 0) {
-        lastCheck = Date.now();
-        for (const sale of newSales) {
-          await sendDiscordSaleEmbed(sale);
-        }
+  try {
+    const transactions = await noblox.getGroupTransactions(GROUP_ID, "Sale", "Asc");
+    const newSales = transactions.filter(tx => new Date(tx.created).getTime() > lastCheck);
+    if (newSales.length > 0) {
+      lastCheck = Date.now();
+      for (const sale of newSales) {
+        await sendDiscordSaleEmbed(sale);
       }
-    } catch (err) {
-      console.warn(⚠️ Error fetching transactions:", err.message);
     }
-  }, 15000);
+  } catch (err) {
+    console.warn("⚠️ Error fetching transactions:", err.message);
+  }
+}, 15000);
 }
 
 process.on("SIGINT", async () => {
